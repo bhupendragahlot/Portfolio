@@ -73,6 +73,26 @@ circleMouseFollower();
 firstPageAnim();
 
 
+function liveClock() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  // Pad single digit minutes and seconds with a leading zero
+  m = (m < 10 ? "0" : "") + m;
+  s = (s < 10 ? "0" : "") + s;
+  // Convert 24-hour time to 12-hour time format
+  var amPm = h >= 12 ? "PM" : "AM";
+  h = h % 12;
+  h = h ? h : 12; // the hour '0' should be '12'
+  var timeString = h + ":" + m + ":" + s + " " + amPm;
+  var timeElement = document.querySelector("#time");
+  timeElement.textContent = timeString;
+}
+
+setInterval(liveClock, 1000);
+
+
 
 document.querySelectorAll(".elem").forEach(function (elem) {
   var rotate = 0;
